@@ -1,0 +1,141 @@
+<div class="container">
+    <div class="content">
+            <form id="form" [formGroup]="consultaForm" (ngSubmit)="onSubmit()">
+                    <h1>Consulta</h1>
+                    <div class="selecao">
+                        <label for="consulta">Selecione o dado que deseja obter</label>
+                        <select [formControlName]="'consulta'" [(ngModel)]="consulta" id="consulta">
+                            <option value="">Selecione</option>
+                            <option value="consultaCandidatosPorEstado">Número de candidatos por estado</option>
+                            <option value="consultaImcPorIdade">IMC médio dos candidatos por faixa de idade</option>
+                            <option value="consultaObesosPorSexo">Percentual de candidatos obesos por sexo</option>
+                            <option value="consultaIdadePorTipoSanguineo">Média de idade dos candidatos por tipo sanguíneo</option>
+                            <option value="consultaCandidatosPorTipoSanguineo">Número de candidatos por tipo sanguíneo</option>
+                        </select>
+                    </div>
+                    <div class="selecao" *ngIf="consulta === 'consultaCandidatosPorEstado'">
+                        <label for="estado">Selecione o estado</label>
+                        <select [formControlName]="'estado'" [(ngModel)]="estado" id="estado">
+                            <option value="">Selecione</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espirito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                    <div class="selecao" *ngIf="consulta === 'consultaImcPorIdade'">
+                        <label for="faixaIdade">Selecione a faixa de idade</label>
+                        <select [formControlName]="'faixaIdade'" [(ngModel)]="faixaIdade" id="faixaIdade">
+                            <option value="">Selecione</option>
+                            <option value="0 a 10">0 a 10 anos</option>
+                            <option value="11 a 20">11 a 20 anos</option>
+                            <option value="21 a 30">21 a 30 anos</option>
+                            <option value="31 a 40">31 a 40 anos</option>
+                            <option value="41 a 50">41 a 50 anos</option>
+                            <option value="51 a 60">51 a 60 anos</option>
+                            <option value="61 a 70">61 a 70 anos</option>
+                            <option value="71 a 80">71 a 80 anos</option>
+                            <option value="81 a 90">81 a 90 anos</option>
+                        </select>
+                    </div>
+                    <div class="selecao" *ngIf="consulta === 'consultaObesosPorSexo'">
+                        <label for="sexo">Selecione o sexo</label>
+                        <select [formControlName]="'sexo'" [(ngModel)]="sexo" id="sexo">
+                            <option value="">Selecione</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                        </select>
+                    </div>
+                    <div class="selecao" *ngIf="consulta === 'consultaIdadePorTipoSanguineo'">
+                        <label for="idadePorTipoSanguineo">Selecione o tipo sanguíneo</label>
+                        <select [formControlName]="'idadePorTipoSanguineo'" [(ngModel)]="tipoSanguineo" id="idadePorTipoSanguineo">
+                            <option value="">Selecione</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="selecao" *ngIf="consulta === 'consultaCandidatosPorTipoSanguineo'">
+                        <label for="candidatosPorTipoSanguineo">Selecione o tipo sanguíneo</label>
+                        <select [formControlName]="'candidatosPorTipoSanguineo'" [(ngModel)]="tipoSanguineo" id="candidatosPorTipoSanguineo">
+                            <option value="">Selecione</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="button" *ngIf="estado.length != 0 && consulta === 'consultaCandidatosPorEstado'
+                                                || faixaIdade.length != 0 && consulta === 'consultaImcPorIdade'
+                                                || sexo.length != 0 && consulta === 'consultaObesosPorSexo'
+                                                || tipoSanguineo.length != 0 && consulta === 'consultaIdadePorTipoSanguineo'
+                                                || tipoSanguineo.length != 0 && consulta === 'consultaCandidatosPorTipoSanguineo'">
+                        <button (click)="onClick()" type="submit">Consultar</button>
+                    </div>
+                </form>
+            <div class="resultadoContent" *ngIf="consulta === 'consultaCandidatosPorEstado' && clicado">
+                <div class="resultado">
+                    Foram encontrados {{qtdeCandidatos}} candidatos no estado de {{estado}}.
+                </div>
+                <a href="/consulta" id="novaConsulta">Nova consulta</a>
+            </div>
+
+            <div class="resultadoContent" *ngIf="consulta === 'consultaImcPorIdade' && clicado">
+                <div class="resultado">
+                    O IMC médio da faixa de idade de {{faixaIdade}} anos é {{imcMedio}}.
+                </div>
+                <a href="/consulta" id="novaConsulta">Nova consulta</a>
+            </div>
+
+            <div class="resultadoContent" *ngIf="consulta === 'consultaObesosPorSexo' && clicado">
+                <div class="resultado">
+                    O percentual de candidatos obesos para o sexo {{sexo}} é {{porcentagem}}%.
+                </div>
+                <a href="/consulta" id="novaConsulta">Nova consulta</a>
+            </div>
+            <div class="resultadoContent" *ngIf="consulta === 'consultaIdadePorTipoSanguineo' && clicado">
+                <div class="resultado">
+                    A média de idade dos candidatos do tipo sanguíneo {{tipoSanguineo}} é {{mediaIdade}}.
+                </div>
+                <a href="/consulta" id="novaConsulta">Nova consulta</a>
+            </div>
+            <div class="resultadoContent" *ngIf="consulta === 'consultaCandidatosPorTipoSanguineo' && clicado">
+                <div class="resultado">
+                    Foram encontrados {{qtdeCandidatos}} com o tipo sanguíneo {{tipoSanguineo}}.
+                </div>
+                <a href="/consulta" id="novaConsulta">Nova consulta</a>
+            </div>
+        </div>
+</div>
